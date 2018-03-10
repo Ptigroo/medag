@@ -12,6 +12,7 @@ namespace medag_hackaton
 {
     class ClientSignalR
     {
+
         private static ClientSignalR instance;
         public static ClientSignalR Instance
         {
@@ -67,15 +68,16 @@ namespace medag_hackaton
             Hub.On<string>("Error", x => { });
             Hub.On<object>("BroadcastPlayerRoom", x => { RoomCo = ConvertRoom(x); });
         }
-        public void ListenRooms(ObservableCollection<RoomModel> rooms)
+        public void ListenRooms(IEnumerable<RoomModel> rooms)
         {
             Hub.On<string>("Error", x => { });
-            Hub.On<object>("BroadcastPlayerRooms", x => { rooms = ConvertRooms(x); });
+            Hub.On<object>("BroadcastPlayerRooms", x => { rooms = (ConvertRooms(x)); });
         }
-        public ObservableCollection<RoomModel> ConvertRooms(object o)
+
+        public IEnumerable<RoomModel> ConvertRooms(object o)
         {
             string json = o.ToString();
-            return JsonConvert.DeserializeObject<ObservableCollection<RoomModel>>(json);
+            return JsonConvert.DeserializeObject<IEnumerable<RoomModel>>(json);
         }
         public RoomModel ConvertRoom(object o)
         {

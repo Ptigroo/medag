@@ -66,8 +66,8 @@ namespace medag_hackaton.ViewModel
                 (CreateGame as Command).ChangeCanExecute();
             }
             }
-        public ObservableCollection<EquipeModel> roomsBinding;
-        public ObservableCollection<EquipeModel> RoomsBinding
+        public IEnumerable<RoomModel> roomsBinding;
+        public IEnumerable<RoomModel> RoomsBinding
         {
             get
             {
@@ -89,6 +89,7 @@ namespace medag_hackaton.ViewModel
         {
             ClientSignalR.Instance.Start();
             ClientSignalR.Instance.CreateRoom(roomName, password, firstTeam, secondTeam);
+            //RoomsBinding = await ClientSignalR.Instance.GetRooms();
 
         }
         public void Join()

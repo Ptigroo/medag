@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="medag_hackaton.Pages.HomePage">
     <StackLayout>
-        <ListView x:Name="Cities" ItemsSource="{Binding RoomsBinding}" SelectedItem="{Binding TeamSelected}">
+        <ListView x:Name="Cities" ItemsSource="{Binding RoomsBinding}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}"></TextCell>
