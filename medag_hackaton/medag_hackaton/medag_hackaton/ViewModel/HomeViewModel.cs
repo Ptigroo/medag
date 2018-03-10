@@ -39,9 +39,9 @@ namespace medag_hackaton.ViewModel
                 (CreateGame as Command).ChangeCanExecute();
             }
         }
-        public Team TeamSelected { get; set; }
-        public ObservableCollection<Team> teamsBinding;
-        public ObservableCollection<Team> TeamsBinding
+        public EquipeModel TeamSelected { get; set; }
+        public ObservableCollection<EquipeModel> teamsBinding;
+        public ObservableCollection<EquipeModel> TeamsBinding
         {
             get
             {
