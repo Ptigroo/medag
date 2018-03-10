@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="medag_hackaton.UWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:medag_hackaton.UWP"
+    RequestedTheme="Light">
+
+</Application>
