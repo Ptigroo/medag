@@ -40,6 +40,32 @@ namespace medag_hackaton.ViewModel
             }
         }
         public EquipeModel TeamSelected { get; set; }
+        public string password;
+        public string Password {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                password = value;
+                OnPropertyChanged();
+                (CreateGame as Command).ChangeCanExecute();
+            }
+        }
+        public string roomName;
+        public string RoomName {
+            get
+            {
+                return roomName;
+            }
+            set
+            {
+                roomName = value;
+                OnPropertyChanged();
+                (CreateGame as Command).ChangeCanExecute();
+            }
+            }
         public ObservableCollection<EquipeModel> teamsBinding;
         public ObservableCollection<EquipeModel> TeamsBinding
         {
@@ -56,10 +82,12 @@ namespace medag_hackaton.ViewModel
         public HomeViewModel(Interfaces.INavigation navigation) : base(navigation)
         {
             JoinTeam = new Command((x) => Join(), x=> (TeamSelected != null));
-            CreateGame = new Command((x) => Create(), x => (FirstTeam != null && SecondTeam != null));
+            CreateGame = new Command((x) => Create(), x => (FirstTeam != null && SecondTeam != null && RoomName != null && Password != null));
         }
         public void Create()
         {
+            ClientSignalR.Instance.Start();
+            ClientSignalR.Instance.CreateRoom(roomName, password, firstTeam, secondTeam);
 
         }
         public void Join()

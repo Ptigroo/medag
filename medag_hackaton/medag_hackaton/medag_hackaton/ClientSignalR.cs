@@ -35,7 +35,7 @@ namespace medag_hackaton
             Start();
         }
 
-        private void Start()
+        public void Start()
         {
             conn.Start().Wait();
         }
@@ -65,17 +65,17 @@ namespace medag_hackaton
             Hub.On<string>("Error", x => { });
             Hub.On<object>("BroadcastPlayerRoom", x => { RoomCo = ConvertRoom(x); });
         }
-        private RoomModel ConvertRoom(object o)
+        public RoomModel ConvertRoom(object o)
         {
             string json = o.ToString();
             return JsonConvert.DeserializeObject<RoomModel>(json);
         }
-        private IEnumerable<UserModel> GetUser(object o)
+        public IEnumerable<UserModel> GetUser(object o)
         {
             string json = o.ToString();
             return JsonConvert.DeserializeObject<IEnumerable<UserModel>>(json);
         }
-        private void CreateRoom(string nameRoom, string password, string nameTeamOne, string nameTeamTwo)
+        public void CreateRoom(string nameRoom, string password, string nameTeamOne, string nameTeamTwo)
         {
             EquipeModel team1 = new EquipeModel()
             {
