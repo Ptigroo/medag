@@ -14,7 +14,7 @@ namespace medag_hackaton
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage( new RegisterPage() );
+			MainPage = new NavigationPage( new LoginPage() );
 		}
 
 		protected override void OnStart ()
