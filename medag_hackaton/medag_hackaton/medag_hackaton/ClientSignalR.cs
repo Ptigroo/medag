@@ -4,6 +4,7 @@ using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +12,7 @@ namespace medag_hackaton
 {
     class ClientSignalR
     {
-        public IEnumerable<UserModel> Users { get; set; }
-        public IHubProxy Hub { get; set; }
         private static ClientSignalR instance;
-        HubConnection conn;
-        public RoomModel RoomCo { get; set; }
         public static ClientSignalR Instance
         {
             get
@@ -28,6 +25,11 @@ namespace medag_hackaton
             }
         }
 
+        public IEnumerable<UserModel> Users { get; set; }
+        public IHubProxy Hub { get; set; }
+        private HubConnection conn;
+        public RoomModel RoomCo { get; set; }
+      
         private ClientSignalR()
         {
             conn = new HubConnection("http://www.walfhand.be");
@@ -64,6 +66,16 @@ namespace medag_hackaton
         {
             Hub.On<string>("Error", x => { });
             Hub.On<object>("BroadcastPlayerRoom", x => { RoomCo = ConvertRoom(x); });
+        }
+        public void ListenRooms(ObservableCollection<RoomModel> rooms)
+        {
+            Hub.On<string>("Error", x => { });
+            Hub.On<object>("BroadcastPlayerRooms", x => { rooms = ConvertRooms(x); });
+        }
+        public ObservableCollection<RoomModel> ConvertRooms(object o)
+        {
+            string json = o.ToString();
+            return JsonConvert.DeserializeObject<ObservableCollection<RoomModel>>(json);
         }
         public RoomModel ConvertRoom(object o)
         {
