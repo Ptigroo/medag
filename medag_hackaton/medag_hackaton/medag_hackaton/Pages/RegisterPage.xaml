@@ -4,13 +4,11 @@
              x:Class="medag_hackaton.Pages.RegisterPage">
     <ContentPage.Content>
         <AbsoluteLayout>
-            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Aqua">
-                <Entry x:Name="Username" Placeholder="Username"/>
+            
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
+                <Entry x:Name="Username" Placeholder="Username" />
                 <Entry x:Name="Password" Placeholder="Password" IsPassword="True"/>
                 <Entry x:Name="Email" Placeholder="Email" Keyboard="Email"/>
-                <Button Text="Next"/>
-            </StackLayout>
-            <StackLayout AbsoluteLayout.LayoutBounds="1,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Beige">
                 <Entry x:Name="Country" Placeholder="Country" />
                 <Entry x:Name="StayDuration" Placeholder="Stay Duration"/>
                 <Entry x:Name="Age" Placeholder="Age"/>

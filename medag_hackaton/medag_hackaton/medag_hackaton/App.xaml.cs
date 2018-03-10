@@ -1,4 +1,5 @@
-﻿using System;
+﻿using medag_hackaton.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace medag_hackaton
 		{
 			InitializeComponent();
 
-			MainPage = new medag_hackaton.MainPage();
+			MainPage = new NavigationPage( new RegisterPage() );
 		}
 
 		protected override void OnStart ()
