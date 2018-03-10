@@ -16,8 +16,8 @@ namespace medag_hackaton.Pages
 	{
 		public HomePage ()
 		{
-			InitializeComponent ();
             BindingContext = new HomeViewModel(new Navigations());
+            InitializeComponent ();
 		}
 	}
 }

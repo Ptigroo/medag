@@ -66,7 +66,8 @@ namespace medag_hackaton.ViewModel
                 (CreateGame as Command).ChangeCanExecute();
             }
             }
-        public IEnumerable<RoomModel> roomsBinding;
+        private IEnumerable<RoomModel> roomsBinding;
+
         public IEnumerable<RoomModel> RoomsBinding
         {
             get
@@ -81,16 +82,22 @@ namespace medag_hackaton.ViewModel
         }
         public HomeViewModel(Interfaces.INavigation navigation) : base(navigation)
         {
+            //RoomsBinding = new List<RoomModel>();
             JoinTeam = new Command((x) => Join(), x=> (TeamSelected != null));
             CreateGame = new Command((x) => Create(), x => (FirstTeam != null && SecondTeam != null && RoomName != null && Password != null));
-            ClientSignalR.Instance.ListenRooms(RoomsBinding);
+            //ClientSignalR.Instance.ListenRooms(RoomsBinding);
+            ClientSignalR.Instance.SetRooms += SetList;
+            ClientSignalR.Instance.ListenRooms();
+        }
+
+        public void SetList(IEnumerable<RoomModel> model)
+        {
+            RoomsBinding = model;
         }
         public void Create()
         {
             ClientSignalR.Instance.Start();
             ClientSignalR.Instance.CreateRoom(roomName, password, firstTeam, secondTeam);
-            //RoomsBinding = await ClientSignalR.Instance.GetRooms();
-
         }
         public void Join()
         {

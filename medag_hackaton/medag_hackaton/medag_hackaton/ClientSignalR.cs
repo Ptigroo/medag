@@ -30,10 +30,12 @@ namespace medag_hackaton
         public IHubProxy Hub { get; set; }
         private HubConnection conn;
         public RoomModel RoomCo { get; set; }
-      
+
+        public event Action<IEnumerable<RoomModel>> SetRooms;
+
         private ClientSignalR()
         {
-            conn = new HubConnection("http://localhost:51056");
+            conn = new HubConnection("http://www.walfhand.be");
             Hub = conn.CreateHubProxy("GameHub");
             Start();
         }
@@ -47,7 +49,6 @@ namespace medag_hackaton
         {
             Hub.On<string>("Error", x => { });
             Hub.On<object>("BroadcastPlayerRoom", x => { Users = GetUser(x); });
-
         }
 
         public async void Login(UserModel user)
@@ -68,16 +69,16 @@ namespace medag_hackaton
             Hub.On<string>("Error", x => { });
             Hub.On<object>("BroadcastPlayerRoom", x => { RoomCo = ConvertRoom(x); });
         }
-        public void ListenRooms(IEnumerable<RoomModel> rooms)
+        public void ListenRooms()
         {
-            Hub.On<string>("Error", x => { });
-            Hub.On<object>("BroadcastPlayerRooms", x => { rooms = (ConvertRooms(x)); });
+            Hub.On<object>("BroadcastPlayerRooms", x => { ConvertRooms(x); });
         }
 
-        public IEnumerable<RoomModel> ConvertRooms(object o)
+        public void ConvertRooms(object o)
         {
             string json = o.ToString();
-            return JsonConvert.DeserializeObject<IEnumerable<RoomModel>>(json);
+            IEnumerable<RoomModel> rooms = JsonConvert.DeserializeObject<IEnumerable<RoomModel>>(json);
+            SetRooms?.Invoke(rooms);
         }
         public RoomModel ConvertRoom(object o)
         {
