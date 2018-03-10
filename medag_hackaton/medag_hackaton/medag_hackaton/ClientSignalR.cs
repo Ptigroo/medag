@@ -30,7 +30,7 @@ namespace medag_hackaton
 
         private ClientSignalR()
         {
-            conn = new HubConnection("http://www.walfhand.be");
+            conn = new HubConnection("http://localhost:51056");
             Hub = conn.CreateHubProxy("GameHub");
             Start();
         }
