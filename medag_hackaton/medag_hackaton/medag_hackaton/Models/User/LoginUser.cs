@@ -9,5 +9,18 @@ namespace medag_hackaton.Models.User
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+
+        public bool IsValid
+        {
+            get
+            {
+                return Email != null
+                    && Username != null
+                    && Password != null
+                    && Email != ""
+                    && Username != ""
+                    && Password != "";
+            }
+        }
     }
 }
