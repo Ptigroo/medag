@@ -3,10 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="medag_hackaton.Pages.RegisterPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Aqua">
+                <Entry x:Name="Username" Placeholder="Username"/>
+                <Entry x:Name="Password" Placeholder="Password" IsPassword="True"/>
+                <Entry x:Name="Email" Placeholder="Email" Keyboard="Email"/>
+                <Button Text="Next"/>
+            </StackLayout>
+            <StackLayout AbsoluteLayout.LayoutBounds="1,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Beige">
+                <Entry x:Name="Country" Placeholder="Country" />
+                <Entry x:Name="StayDuration" Placeholder="Stay Duration"/>
+                <Entry x:Name="Age" Placeholder="Age"/>
+                <Button Text="Validate"/>
+            </StackLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

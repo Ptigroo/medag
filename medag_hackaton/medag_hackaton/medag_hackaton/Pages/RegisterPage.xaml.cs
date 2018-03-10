@@ -1,4 +1,5 @@
-﻿using System;
+﻿using medag_hackaton.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,9 @@ namespace medag_hackaton.Pages
 	{
 		public RegisterPage ()
 		{
-			InitializeComponent ();
+            BindingContext = new LoginRegisterViewModel();
+            InitializeComponent ();
+            
 		}
 	}
 }
