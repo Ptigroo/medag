@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.medag_hackaton" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="15" />
-<<<<<<< HEAD
+
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<application android:label="medag_hackaton.Android"></application>
-=======
 	<application android:label="medag_hackaton.Android" android:icon="@drawable/icon"></application>
->>>>>>> 156f3e20cb9f24867b00e3d84512cbc0cf0822f3
+
 </manifest>
