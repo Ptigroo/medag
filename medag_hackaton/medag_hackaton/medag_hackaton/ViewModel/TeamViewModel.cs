@@ -83,8 +83,6 @@ namespace medag_hackaton.ViewModel
         {
             GoCommand = new Command(x => StartGame());
             ClientSignalR.Instance.SetPlayersInTheRoomEvent += SetPlayersInTheRooms;
-            ClientSignalR.Instance.StartGameEvent += StartGame;
-            ClientSignalR.Instance.ListenStartGame();
             ClientSignalR.Instance.ListenTeamPlayers();
             this.user = user;
             this.Room = room;

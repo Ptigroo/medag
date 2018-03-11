@@ -14,7 +14,7 @@ namespace medag_hackaton
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage( new MapPage());
+			MainPage = new NavigationPage( new LoginPage());
 
 		}
 
