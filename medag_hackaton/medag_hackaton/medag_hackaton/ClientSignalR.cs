@@ -32,6 +32,7 @@ namespace medag_hackaton
 
         public event Action<IEnumerable<RoomModel>> SetRooms;
         public event Action<RoomModel> SetPlayersInTheRoomEvent;
+        public event Action StartGameEvent;
 
         private ClientSignalR()
         {
@@ -59,6 +60,21 @@ namespace medag_hackaton
         public async Task JoinTeam(string teamName, UserModel user)
         {
             await Hub.Invoke("JoinTeam", teamName, user.Id);
+        }
+
+        public void ListenStartGame()
+        {
+            Hub.On("BroadCastPlayerRoom", x => { StartGameCallback(); });
+        }
+
+        public void StartGameCallback()
+        {
+            StartGameEvent();
+        }
+
+        public async void InvoqueStartGame(string roomName)
+        {
+            await Hub.Invoke("StartGame",roomName);
         }
 
         public async Task JoinRoom(string roomName)
