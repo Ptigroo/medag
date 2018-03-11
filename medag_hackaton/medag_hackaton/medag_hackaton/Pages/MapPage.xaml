@@ -7,7 +7,7 @@
         <AbsoluteLayout x:Name="field">
             <Image x:Name="demon" Source="demon.png" AbsoluteLayout.LayoutBounds="{Binding RectOpponent}" AbsoluteLayout.LayoutFlags="All"></Image>
             <Image Source="ange.png" AbsoluteLayout.LayoutBounds="{Binding RectUs}" AbsoluteLayout.LayoutFlags="All"></Image>
-            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, .5" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, .5" AbsoluteLayout.LayoutFlags="All" IsVisible="False">
                 <Image x:Name="imageQuest" Source="gareMons.jpg"></Image>
                 <Label Text="{Binding Enonce}"></Label>
             <Picker x:Name="picker" Title="Select une réponse">
