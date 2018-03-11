@@ -13,6 +13,14 @@ namespace medag_hackaton.ViewModel
 {
     class RegisterViewModel : BaseViewModel
     {
+        private bool _IsRegisterButtonEnabled;
+
+        public bool IsRegisterButtonEnabled
+        {
+            get { return _IsRegisterButtonEnabled; }
+            set { _IsRegisterButtonEnabled = value; OnPropertyChanged(); }
+        }
+
         public RegisterUser User { get; set; }
         public ICommand ValidateCommand { get; set; }
         private string _ErrorMessage;
@@ -38,6 +46,7 @@ namespace medag_hackaton.ViewModel
 
         private async Task<bool> Register()
         {
+            IsRegisterButtonEnabled = false;
 
             if (User.IsValid)
             {
@@ -46,7 +55,7 @@ namespace medag_hackaton.ViewModel
                 if (userModel.Id != 0)
                 {
                     Application.Current.Properties.Add("user", userModel);
-
+                    IsRegisterButtonEnabled = true;
                     await navigation.Push(new CityListPage());
 
                 }
@@ -60,6 +69,7 @@ namespace medag_hackaton.ViewModel
             {
                 ErrorMessage = "Missing field(s)";
             }
+            IsRegisterButtonEnabled = true;
             return false;
         } 
     }

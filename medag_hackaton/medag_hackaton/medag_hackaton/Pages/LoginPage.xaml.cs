@@ -20,5 +20,6 @@ namespace medag_hackaton.Pages
             BindingContext = new LoginViewModel(new Navigations());
 
         }
+        
 	}
 }

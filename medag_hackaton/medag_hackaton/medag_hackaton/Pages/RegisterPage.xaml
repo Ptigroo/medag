@@ -10,7 +10,7 @@
                 <Entry x:Name="Password2" Placeholder="Confirm password" IsPassword="True" Text="{Binding User.Password2}"/>
                 <Entry x:Name="Email" Placeholder="Email" Keyboard="Email" Text="{Binding User.Mail}"/>
                 <Label TextColor="Red"  Text="{Binding ErrorMessage}"/>
-                <Button Text="Validate" Command="{Binding ValidateCommand}"/>                           
+                <Button x:Name="ValidateButton" Text="Validate" IsEnabled="{Binding IsRegisterButtonEnabled}" Command="{Binding ValidateCommand}"/>                           
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage.Content>                                                                               
