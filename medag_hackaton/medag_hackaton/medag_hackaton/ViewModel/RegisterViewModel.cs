@@ -43,9 +43,11 @@ namespace medag_hackaton.ViewModel
 
             if (User.IsValid)
             {
-                UserModel UserModel = await UserConnector.Instance.Register(User);
-                if (UserModel != null)
+                UserModel userModel = new UserModel() { Mail = User.Mail, Username = User.Username , Password= User.Password};
+                userModel.Id = await UserConnector.Instance.Insert(userModel);
+                if (userModel.Id != 0)
                 {
+                    Application.Current.Properties.Add("user", userModel);
                     await Navigations.Push(new HomePage());
                     return true;
                 }

@@ -26,22 +26,15 @@ namespace medag_hackaton.APIConnector
             }
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                Uri = new Uri($"{Url}");
-                HttpResponseMessage message = await client.GetAsync(Uri);
-                return JsonConvert.DeserializeObject<IEnumerable<TEntity>>(await message.Content.ReadAsStringAsync());
-            }
-        }
+
+        public abstract Task<TEntity> Get(TEntity entity);
 
         public async Task<TKey> Insert(TEntity entity)
         {
             using (HttpClient client = new HttpClient())
             {
                 string json = JsonConvert.SerializeObject(entity);
-                HttpContent httpContent = new StringContent(json);
+                HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                 Uri = new Uri($"{Url}");
                 HttpResponseMessage message = await client.PostAsync(Uri,httpContent);
 
@@ -50,5 +43,10 @@ namespace medag_hackaton.APIConnector
         }
 
         public abstract TKey Convert(string json);
+
+        public Task<IEnumerable<TEntity>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,17 +7,17 @@ namespace medag_hackaton.Models.User
     public class RegisterUser
     {
         public string Username { get; set; }
-        public string Email { get; set; }
+        public string Mail { get; set; }
         
         public string Password { get; set; }        
         public string Password2 { get; set; }
 
         public bool IsValid { get
             {
-                return Email != null
+                return Mail != null
                     && Username != null
                     && Password != null                    
-                    && Email != ""
+                    && Mail != ""
                     && Username != ""
                     && Password != ""
                     && Password == Password2;
