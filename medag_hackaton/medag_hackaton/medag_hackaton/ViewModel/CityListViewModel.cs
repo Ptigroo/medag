@@ -48,7 +48,6 @@ namespace medag_hackaton.ViewModel
 
         public async void CitySelectedF()
         {
-<<<<<<< HEAD
             if (CitySelected != null)
             {
                 var dataItem = citySelected;
@@ -58,12 +57,6 @@ namespace medag_hackaton.ViewModel
                 await Navigation.Push(new HomePage((UserModel)forms.Application.Current.Properties["user"]));
                 //await Navigation.Push(new HomePage(new UserModel() { Id = 1, Username = "test", Mail = "test@test.com" }));
             }
-            
-=======
-            var dataItem = citySelected;
-            forms.Application.Current.Properties.Add("city", dataItem);
-            //await Navigation.Push(new HomePage());
->>>>>>> b357bf510319758d62fe1e077256a59bdb906cb9
         }
 
     }

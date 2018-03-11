@@ -49,14 +49,9 @@ namespace medag_hackaton.ViewModel
                 if(UserModel != null)
                 {
                     Application.Current.Properties.Add("user", UserModel);
-<<<<<<< HEAD
 
                     ClientSignalR.Instance.Login(UserModel);
-                    await navigation.Push(new CityListPage());                   
-=======
-                    ClientSignalR.Instance.Login(UserModel);
-                    await navigation.Push(new HomePage(UserModel));
->>>>>>> b357bf510319758d62fe1e077256a59bdb906cb9
+                    await navigation.Push(new CityListPage());      
                 }
                 else
                 {
