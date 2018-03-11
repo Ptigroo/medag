@@ -8,7 +8,7 @@
                 <Entry x:Name="Username" Placeholder="Username" Text="{Binding User.Username}"/>
                 <Entry x:Name="Password" Placeholder="Password" IsPassword="True" Text="{Binding User.Password}"/>
                 <Entry x:Name="Password2" Placeholder="Confirm password" IsPassword="True" Text="{Binding User.Password2}"/>
-                <Entry x:Name="Email" Placeholder="Email" Keyboard="Email" Text="{Binding User.Email}"/>
+                <Entry x:Name="Email" Placeholder="Email" Keyboard="Email" Text="{Binding User.Mail}"/>
                 <Label TextColor="Red"  Text="{Binding ErrorMessage}"/>
                 <Button Text="Validate" Command="{Binding ValidateCommand}"/>                           
             </StackLayout>
