@@ -103,18 +103,17 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-
     <Content Include="ange.png" />
     <Content Include="demon.png" />
+    <Content Include="gareMons.jpg" />
     <Content Include="mapmons.PNG" />
-
     <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="icon.jpg" />
-
+    <Content Include="PinLocation.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-100.png" />
     <Content Include="Assets\LockScreenLogo.scale-125.png" />

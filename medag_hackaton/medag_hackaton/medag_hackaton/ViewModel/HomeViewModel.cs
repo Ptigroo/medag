@@ -113,7 +113,7 @@ namespace medag_hackaton.ViewModel
         }
         public void Create()
         {
-            ClientSignalR.Instance.Start();
+            
             ClientSignalR.Instance.CreateRoom(roomName, password, firstTeam, secondTeam);
         }
         public void Join()

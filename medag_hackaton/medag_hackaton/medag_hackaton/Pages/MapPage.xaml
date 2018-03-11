@@ -5,8 +5,22 @@
              BackgroundImage="mapmons.PNG">
     
         <AbsoluteLayout x:Name="field">
-        <Image x:Name="demon" Source="demon.png" AbsoluteLayout.LayoutBounds="{Binding RectOpponent}" AbsoluteLayout.LayoutFlags="All"></Image>
-        <Image Source="ange.png" AbsoluteLayout.LayoutBounds="{Binding RectUs}" AbsoluteLayout.LayoutFlags="All"></Image>
+            <Image x:Name="demon" Source="demon.png" AbsoluteLayout.LayoutBounds="{Binding RectOpponent}" AbsoluteLayout.LayoutFlags="All"></Image>
+            <Image Source="ange.png" AbsoluteLayout.LayoutBounds="{Binding RectUs}" AbsoluteLayout.LayoutFlags="All"></Image>
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, .5" AbsoluteLayout.LayoutFlags="All">
+                <Image x:Name="imageQuest" Source="gareMons.jpg"></Image>
+                <Label Text="{Binding Enonce}"></Label>
+            <Picker x:Name="picker" Title="Select une réponse">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Bleu</x:String>
+                        <x:String>Gris</x:String>
+                        <x:String>Rouge</x:String>
+                        <x:String>Blanc</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </StackLayout>
         </AbsoluteLayout>
         
 </ContentPage>
