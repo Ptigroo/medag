@@ -49,7 +49,7 @@ namespace medag_hackaton.ViewModel
         {
             var dataItem = citySelected;
             forms.Application.Current.Properties.Add("city", dataItem);
-            await Navigation.Push(new HomePage());
+            //await Navigation.Push(new HomePage());
         }
 
     }
