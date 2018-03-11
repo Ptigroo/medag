@@ -13,6 +13,14 @@ namespace medag_hackaton.ViewModel
 {
     class LoginViewModel : BaseViewModel
     {
+        private bool _IsLoginButtonEnabled;
+
+        public bool IsLoginButtonEnabled
+        {
+            get { return _IsLoginButtonEnabled; }
+            set { _IsLoginButtonEnabled = value; OnPropertyChanged(); }
+        }
+
         public LoginUser User { get; set; }
         public ICommand ValidateCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
@@ -43,13 +51,18 @@ namespace medag_hackaton.ViewModel
 
         private async void Login()
         {
+            IsLoginButtonEnabled = false;
             if (User.IsValid)
             {
                 UserModel UserModel = await UserConnector.Instance.Get(new UserModel() { Username = User.Username, Password = User.Password });
                 if(UserModel != null)
                 {
+                    if(Application.Current.Properties.ContainsKey("user"))
+                    {
+                        Application.Current.Properties.Clear();
+                    }
                     Application.Current.Properties.Add("user", UserModel);
-
+                    IsLoginButtonEnabled = true;
                     ClientSignalR.Instance.Login(UserModel);
                     await navigation.Push(new CityListPage());      
                 }
@@ -63,6 +76,7 @@ namespace medag_hackaton.ViewModel
             {
                 ErrorMessage = "Missing field(s)";
             }
+            IsLoginButtonEnabled = true;
         }
     }
 }
