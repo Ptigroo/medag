@@ -19,6 +19,18 @@ namespace medag_hackaton.ViewModel
         public double PosYActu { get; set; }
         public double MultY { get; set; }
         public double MultX { get; set; }
+        private Rectangle stepLocation;
+
+        public Rectangle StepLocation
+        {
+            get { return stepLocation; }
+            set
+            {
+                stepLocation = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Rectangle rectOpponent;
         public Rectangle RectOpponent {
             get
@@ -69,7 +81,6 @@ namespace medag_hackaton.ViewModel
                 Nom = "Ouest",
                 Steps = Etapes
             };
-
             YMin = 50.444979;
             XMin = 3.922902;
             YMax = 50.462576;
@@ -81,8 +92,19 @@ namespace medag_hackaton.ViewModel
             PosYActu = ((YMax - YActu) * MultY);
             PosXActu = ((XMax - XActu) * MultX);
             //field.Children.Add(demon, new Rectangle(PosYActu, PosXActu, 0.06, 0.06), AbsoluteLayoutFlags.All);
-
+            PutPin();
             Move();
+        }
+        public void PutPin()
+        {
+            
+            double XPin = Parcour.Steps[0].Position.X;
+            double YPin = Parcour.Steps[0].Position.Y;
+            MultY = (1 / (YMax - YMin));
+            MultX = (1 / (XMax - XMin));
+            double PosPinYActu = ((YMax - YActu) * MultY);
+            double PosPinXActu = ((XMax - XActu) * MultX);
+            stepLocation = new Rectangle(PosPinYActu, PosPinXActu, 0.06, 0.06);
         }
         public async void Move()
         {
