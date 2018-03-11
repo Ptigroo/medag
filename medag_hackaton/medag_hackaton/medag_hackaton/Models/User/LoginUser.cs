@@ -14,10 +14,9 @@ namespace medag_hackaton.Models.User
         {
             get
             {
-                return Email != null
-                    && Username != null
+                return 
+                     Username != null
                     && Password != null
-                    && Email != ""
                     && Username != ""
                     && Password != "";
             }

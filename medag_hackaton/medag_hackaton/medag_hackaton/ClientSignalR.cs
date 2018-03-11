@@ -31,10 +31,11 @@ namespace medag_hackaton
         public RoomModel RoomCo { get; set; }
 
         public event Action<IEnumerable<RoomModel>> SetRooms;
+        public event Action<RoomModel> SetPlayersInTheRoomEvent;
 
         private ClientSignalR()
         {
-            conn = new HubConnection("http://www.walfhand.be");
+            conn = new HubConnection("http://localhost:51056/");
             Hub = conn.CreateHubProxy("GameHub");
             Start();
         }
@@ -55,10 +56,23 @@ namespace medag_hackaton
             await Hub.Invoke<bool>("Login", (user.Id));
         }
 
-        public async Task JoinTeam(int teamName, UserModel user)
+        public async Task JoinTeam(string teamName, UserModel user)
         {
             await Hub.Invoke("JoinTeam", teamName, user.Id);
         }
+
+        public void ListenTeamPlayers()
+        {
+            Hub.On<object>("BroadCastPlayerRoom", x => { ConvertPlayersTeam(x); });
+        }
+
+        public void ConvertPlayersTeam(object o)
+        {
+            string json = o.ToString();
+            RoomModel room = JsonConvert.DeserializeObject<RoomModel>(json);
+            SetPlayersInTheRoomEvent?.Invoke(room);
+        }
+
         public async Task<IEnumerable<RoomModel>> GetRooms()
         {
             return await Hub.Invoke<IEnumerable<RoomModel>>("GetRooms");

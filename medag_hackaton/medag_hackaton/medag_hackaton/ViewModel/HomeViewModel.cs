@@ -1,5 +1,7 @@
 ﻿using medag_hackaton.Interfaces;
 using medag_hackaton.Models.Team;
+using medag_hackaton.Models.User;
+using medag_hackaton.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +15,8 @@ namespace medag_hackaton.ViewModel
     {
         public ICommand JoinTeam { get; set; }
         public ICommand CreateGame { get; set; }
+
+        UserModel user;
         public string firstTeam;
         public string FirstTeam {
             get
@@ -39,7 +43,21 @@ namespace medag_hackaton.ViewModel
                 (CreateGame as Command).ChangeCanExecute();
             }
         }
-        public EquipeModel TeamSelected { get; set; }
+        private RoomModel teamSelected;
+        public RoomModel TeamSelected
+        {
+            get
+            {
+                return teamSelected;
+            }
+            set
+            {
+                teamSelected = value;
+                OnPropertyChanged();
+                (JoinTeam as Command).ChangeCanExecute();
+            }
+        }
+
         public string password;
         public string Password {
             get
@@ -80,12 +98,11 @@ namespace medag_hackaton.ViewModel
                 OnPropertyChanged();
             }
         }
-        public HomeViewModel(Interfaces.INavigation navigation) : base(navigation)
+        public HomeViewModel(Interfaces.INavigation navigation,UserModel user) : base(navigation)
         {
-            //RoomsBinding = new List<RoomModel>();
+            this.user = user;
             JoinTeam = new Command((x) => Join(), x=> (TeamSelected != null));
             CreateGame = new Command((x) => Create(), x => (FirstTeam != null && SecondTeam != null && RoomName != null && Password != null));
-            //ClientSignalR.Instance.ListenRooms(RoomsBinding);
             ClientSignalR.Instance.SetRooms += SetList;
             ClientSignalR.Instance.ListenRooms();
         }
@@ -101,7 +118,7 @@ namespace medag_hackaton.ViewModel
         }
         public void Join()
         {
-
+            navigation.Push(new TeamPage(user, teamSelected));
         }
 
     }

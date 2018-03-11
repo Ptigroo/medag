@@ -13,7 +13,6 @@ namespace medag_hackaton.ViewModel
 {
     class RegisterViewModel : BaseViewModel
     {
-        public Interfaces.INavigation Navigations { get; }
         public RegisterUser User { get; set; }
         public ICommand ValidateCommand { get; set; }
         private string _ErrorMessage;
@@ -32,7 +31,6 @@ namespace medag_hackaton.ViewModel
         public RegisterViewModel(Interfaces.INavigation navigation) : base(navigation)
         {
             User = new RegisterUser();
-            this.Navigations = navigation;
             ValidateCommand = new Command(async () => await Register());
             ErrorMessage = "";
         }
@@ -48,7 +46,7 @@ namespace medag_hackaton.ViewModel
                 if (userModel.Id != 0)
                 {
                     Application.Current.Properties.Add("user", userModel);
-                    await Navigations.Push(new HomePage());
+                    await navigation.Push(new HomePage(userModel));
                     return true;
                 }
                 else
