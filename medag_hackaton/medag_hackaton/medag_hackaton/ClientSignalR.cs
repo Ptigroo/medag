@@ -64,7 +64,7 @@ namespace medag_hackaton
 
         public void ListenStartGame()
         {
-            Hub.On("BroadCastPlayerRoom", x => { StartGameCallback(); });
+            Hub.On("StartGame", x => { StartGameCallback(); });
         }
 
         public void StartGameCallback()
