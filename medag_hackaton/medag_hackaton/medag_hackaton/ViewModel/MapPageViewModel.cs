@@ -1,4 +1,5 @@
-﻿using Plugin.Geolocator;
+﻿using medag_hackaton.Models.Zone;
+using Plugin.Geolocator;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -43,8 +44,32 @@ namespace medag_hackaton.ViewModel
                 OnPropertyChanged();
             }
         }
+        public List<EtapeModel> Etapes { get; set; }
+        public ParcourModel Parcour { get; set; }
+
         public MapPageViewModel(Interfaces.INavigation navigation) : base(navigation)
         {
+            Etapes = new List<EtapeModel>();
+            Etapes.Add(new EtapeModel
+            {
+                Id = 0,
+                Nom = "Premiere etape",
+                Position = new Position
+                {
+                    X = 3.942726,
+                    Y = 50.453441
+                },
+                PhotoPath = "gareMons.jpg",
+                Question = "De quelle couleur est la gare"
+
+            });
+            Parcour = new ParcourModel
+            {
+                Id = 1,
+                Nom = "Ouest",
+                Steps = Etapes
+            };
+
             YMin = 50.444979;
             XMin = 3.922902;
             YMax = 50.462576;
@@ -65,9 +90,14 @@ namespace medag_hackaton.ViewModel
 
             var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(2));
 
+            
 
             XActu = position.Longitude;
             YActu = position.Latitude;
+            if (((XActu - Etapes[0].Position.X) < 0.005) && ((YActu - Etapes[0].Position.Y)<0.005))
+            {
+
+            }
             MultY = (1 / (YMax - YMin));
             MultX = (1 / (XMax - XMin));
             PosYActu = ((YMax - YActu) * MultY);
