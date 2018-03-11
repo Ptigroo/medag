@@ -61,7 +61,6 @@ namespace medag_hackaton.ViewModel
 
                 CitySelected = null;
                 await Navigation.Push(new HomePage((UserModel)forms.Application.Current.Properties["user"]));
-                //await Navigation.Push(new HomePage(new UserModel() { Id = 1, Username = "test", Mail = "test@test.com" }));
             }
         }
 
