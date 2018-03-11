@@ -44,6 +44,18 @@ namespace medag_hackaton.ViewModel
             }
 
         }
+        private bool visibility;
+
+        public bool Visibility
+        {
+            get { return visibility; }
+            set
+            {
+                visibility = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Rectangle rectUs;
         public Rectangle RectUs {
             get
@@ -61,6 +73,7 @@ namespace medag_hackaton.ViewModel
 
         public MapPageViewModel(Interfaces.INavigation navigation) : base(navigation)
         {
+            Visibility = false;
             Etapes = new List<EtapeModel>();
             Etapes.Add(new EtapeModel
             {
@@ -102,9 +115,9 @@ namespace medag_hackaton.ViewModel
             double YPin = Parcour.Steps[0].Position.Y;
             MultY = (1 / (YMax - YMin));
             MultX = (1 / (XMax - XMin));
-            double PosPinYActu = ((YMax - YActu) * MultY);
-            double PosPinXActu = ((XMax - XActu) * MultX);
-            stepLocation = new Rectangle(PosPinYActu, PosPinXActu, 0.06, 0.06);
+            double PosPinYActu = ((YMax - YPin) * MultY);
+            double PosPinXActu = ((XMax - XPin) * MultX);
+            StepLocation = new Rectangle(PosPinYActu, PosPinXActu, 0.06, 0.06);
         }
         public async void Move()
         {
@@ -118,7 +131,7 @@ namespace medag_hackaton.ViewModel
             YActu = position.Latitude;
             if (((XActu - Etapes[0].Position.X) < 0.005) && ((YActu - Etapes[0].Position.Y)<0.005))
             {
-
+                Visibility = true;
             }
             MultY = (1 / (YMax - YMin));
             MultX = (1 / (XMax - XMin));
