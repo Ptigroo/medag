@@ -12,12 +12,13 @@ using Xamarin.Forms.Xaml;
 namespace medag_hackaton.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class HomePage : ContentPage
+	public partial class LoginPage : ContentPage
 	{
-		public HomePage ()
+		public LoginPage ()
 		{
-            BindingContext = new HomeViewModel(new Navigations());
-            InitializeComponent ();
-		}
+            InitializeComponent();
+            BindingContext = new LoginViewModel(new Navigations());
+
+        }
 	}
 }

@@ -4,16 +4,14 @@
              x:Class="medag_hackaton.Pages.RegisterPage">
     <ContentPage.Content>
         <AbsoluteLayout>
-            
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
-                <Entry x:Name="Username" Placeholder="Username" />
-                <Entry x:Name="Password" Placeholder="Password" IsPassword="True"/>
-                <Entry x:Name="Email" Placeholder="Email" Keyboard="Email"/>
-                <Entry x:Name="Country" Placeholder="Country" />
-                <Entry x:Name="StayDuration" Placeholder="Stay Duration"/>
-                <Entry x:Name="Age" Placeholder="Age"/>
-                <Button Text="Validate"/>
+                <Entry x:Name="Username" Placeholder="Username" Text="{Binding User.Username}"/>
+                <Entry x:Name="Password" Placeholder="Password" IsPassword="True" Text="{Binding User.Password}"/>
+                <Entry x:Name="Password2" Placeholder="Confirm password" IsPassword="True" Text="{Binding User.Password2}"/>
+                <Entry x:Name="Email" Placeholder="Email" Keyboard="Email" Text="{Binding User.Mail}"/>
+                <Label TextColor="Red"  Text="{Binding ErrorMessage}"/>
+                <Button Text="Validate" Command="{Binding ValidateCommand}"/>                           
             </StackLayout>
         </AbsoluteLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentPage.Content>                                                                               
+</ContentPage>                                                                                          

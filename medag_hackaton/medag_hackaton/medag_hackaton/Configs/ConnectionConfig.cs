@@ -6,9 +6,9 @@ namespace medag_hackaton.Configs
 {
     static class ConnectionConfig
     {
-        private static string APIbaseURL = "/";
+        private static string APIbaseURL = "http://www.walfhand.be/api";
 
-            private static string UserURL = $"{APIbaseURL}/Users/";
+            public static string UserURL = $"{APIbaseURL}/User/";
 
                 
     }

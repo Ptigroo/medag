@@ -17,7 +17,7 @@ namespace medag_hackaton.Pages
 		public RegisterPage ()
 		{
             InitializeComponent ();
-            BindingContext = new LoginRegisterViewModel(new Navigations());
+            BindingContext = new RegisterViewModel(new Navigations());
 
         }
 	}
