@@ -1,4 +1,5 @@
 ﻿using medag_hackaton.APIConnector;
+using medag_hackaton.Interfaces;
 using medag_hackaton.Models.User;
 using medag_hackaton.Pages;
 using System;
@@ -48,8 +49,9 @@ namespace medag_hackaton.ViewModel
                 if(UserModel != null)
                 {
                     Application.Current.Properties.Add("user", UserModel);
+
                     ClientSignalR.Instance.Login(UserModel);
-                    await navigation.Push(new HomePage(UserModel));
+                    await navigation.Push(new CityListPage());      
                 }
                 else
                 {

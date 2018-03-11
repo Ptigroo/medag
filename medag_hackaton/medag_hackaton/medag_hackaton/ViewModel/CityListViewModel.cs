@@ -1,4 +1,5 @@
 ﻿using medag_hackaton.Interfaces;
+using medag_hackaton.Models.User;
 using medag_hackaton.Models.Zone;
 using medag_hackaton.Pages;
 using System;
@@ -47,12 +48,16 @@ namespace medag_hackaton.ViewModel
 
         public async void CitySelectedF()
         {
-            var dataItem = citySelected;
-            forms.Application.Current.Properties.Add("city", dataItem);
-            //await Navigation.Push(new HomePage());
+            if (CitySelected != null)
+            {
+                var dataItem = citySelected;
+                forms.Application.Current.Properties.Add("city", dataItem);
+                
+                citySelected = null;
+                await Navigation.Push(new HomePage((UserModel)forms.Application.Current.Properties["user"]));
+                //await Navigation.Push(new HomePage(new UserModel() { Id = 1, Username = "test", Mail = "test@test.com" }));
+            }
         }
 
     }
-
-
 }
