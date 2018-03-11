@@ -22,7 +22,7 @@
             <ListView ItemsSource="{Binding PlayersTeamTwo}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name}">
+                        <TextCell Text="{Binding Username}">
                             
                         </TextCell>
                     </DataTemplate>
@@ -31,6 +31,10 @@
             </ListView>
 
             <Button Text="Join team two" Command="{Binding JoinTeamTwoCommand}">
+                
+            </Button>
+
+            <Button Text="Gooo" Command="{Binding GoCommand}">
                 
             </Button>
             
