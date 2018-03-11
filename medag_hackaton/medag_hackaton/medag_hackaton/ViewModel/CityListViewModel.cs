@@ -51,11 +51,16 @@ namespace medag_hackaton.ViewModel
             if (CitySelected != null)
             {
                 var dataItem = citySelected;
-                forms.Application.Current.Properties.Add("city", dataItem);
                 
-                citySelected = null;
+                if (forms.Application.Current.Properties.ContainsKey("city"))
+                {
+                    forms.Application.Current.Properties.Remove("city");
+                }
+
+                forms.Application.Current.Properties.Add("city", dataItem);
+
+                CitySelected = null;
                 await Navigation.Push(new HomePage((UserModel)forms.Application.Current.Properties["user"]));
-                //await Navigation.Push(new HomePage(new UserModel() { Id = 1, Username = "test", Mail = "test@test.com" }));
             }
         }
 
