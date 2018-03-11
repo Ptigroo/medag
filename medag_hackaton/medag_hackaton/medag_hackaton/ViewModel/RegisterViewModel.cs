@@ -46,7 +46,12 @@ namespace medag_hackaton.ViewModel
                 if (userModel.Id != 0)
                 {
                     Application.Current.Properties.Add("user", userModel);
+<<<<<<< HEAD
                     await navigation.Push(new CityListPage());
+=======
+
+                    await navigation.Push(new HomePage(userModel));
+>>>>>>> f34a112d2a04be516153d1be4fe99f3a9135d1b9
                 }
                 else
                 {
