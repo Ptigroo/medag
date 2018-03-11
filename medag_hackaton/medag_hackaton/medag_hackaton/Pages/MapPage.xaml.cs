@@ -1,4 +1,7 @@
-﻿using System;
+﻿using medag_hackaton.Interfaces;
+using medag_hackaton.ViewModel;
+using Plugin.Geolocator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +15,14 @@ namespace medag_hackaton.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MapPage : ContentPage
 	{
-		public MapPage ()
-		{
-			InitializeComponent ();
-		}
+        
+        public MapPage ()
+        {
+            NavigationPage.SetHasNavigationBar(this, false);
+            InitializeComponent ();
+            BindingContext = new MapPageViewModel(new Navigations());
+            
+        }
+        
 	}
 }
