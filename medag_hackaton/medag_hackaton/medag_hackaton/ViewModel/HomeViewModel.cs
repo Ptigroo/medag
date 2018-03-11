@@ -116,9 +116,10 @@ namespace medag_hackaton.ViewModel
             
             ClientSignalR.Instance.CreateRoom(roomName, password, firstTeam, secondTeam);
         }
-        public void Join()
+        public async void Join()
         {
-            navigation.Push(new TeamPage(user, teamSelected));
+            await ClientSignalR.Instance.JoinRoom(teamSelected.Name);
+            await navigation.Push(new TeamPage(user, teamSelected));
         }
 
     }

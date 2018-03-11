@@ -61,6 +61,11 @@ namespace medag_hackaton
             await Hub.Invoke("JoinTeam", teamName, user.Id);
         }
 
+        public async Task JoinRoom(string roomName)
+        {
+            await Hub.Invoke("JoinRoom", roomName);
+        }
+
         public void ListenTeamPlayers()
         {
             Hub.On<object>("BroadCastPlayerRoom", x => { ConvertPlayersTeam(x); });
