@@ -8,6 +8,7 @@ using medag_hackaton.Models.Team;
 using medag_hackaton.Models.User;
 using Xamarin.Forms;
 using System.Linq;
+using medag_hackaton.Pages;
 
 namespace medag_hackaton.ViewModel
 {
@@ -116,7 +117,7 @@ namespace medag_hackaton.ViewModel
 
         public void StartGame()
         {
-
+            navigation.Push(new MapPage());
         }
 
     }
